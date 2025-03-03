@@ -1,0 +1,28 @@
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+.card {
+  margin: 15px 0;
+}
+
+button {
+  background: #646cff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #535bf2;
+}
+
+input {
+  padding: 8px;
+  font-size: 16px;
+  margin-right: 5px;
+}

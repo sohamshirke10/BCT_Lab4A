@@ -1,0 +1,38 @@
+networks:
+  dapp_network:
+    driver: bridge
+services:
+  ganache:
+    build: ./ganache
+    container_name: ganache
+    networks:
+      - dapp_network
+    ports:
+      # Remove this if external access is not needed
+      - "8545:8545"
+
+  server:
+    build: ./server
+    container_name: server
+    depends_on:
+      - ganache
+    environment:
+      - PRIVATE_KEY=0x95af0b7149284dfdf80fc7eaecb63e9739ea00eb4224e88566b28c0b63a75b4d
+      - GANACHE_URL=http://ganache:8545
+    networks:
+      - dapp_network
+    ports:
+      # Remove this if external access is not needed
+      - "4000:4000"
+
+  client:
+    build: ./client
+    container_name: client
+    depends_on:
+      - server
+    environment:
+      - VITE_SERVER_URL=http://localhost:4000
+    networks:
+      - dapp_network
+    ports:
+      - "5173:5173"
